@@ -51,9 +51,8 @@ public class BancoCutre {
 
 
         MovimientoBancario movimientoBancario1 = new MovimientoBancario(9876, TipoMovimientoBancario.DEBE, new BigDecimal("200"), new GregorianCalendar(2013, 4, 22).getTime(), new BigDecimal("5000"), "Pago Contribución");
+        
 
-        
-        
         imprimirCuentaBancaria(cuentaBancaria1);
     }
 
