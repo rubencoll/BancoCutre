@@ -90,13 +90,13 @@ public class CuentaBancaria {
     
     public String getInformacionCuentaBancaria() {
 
-        String informacionCoche = " ID: " + this.idCuentaBancaria + " \n Numero Cuenta: " + this.numeroCuenta + "\n DC: " + this.dc + "\n Saldo: " + this.saldo + "\n CIF: "+this.cif;
+        String informacionCoche = " Numero Cuenta: " + this.numeroCuenta + "\n DC: " + this.dc + "\n Saldo: " + this.saldo + "\n CIF: "+this.cif;
 
         return informacionCoche;
     }
      public String getNumeroCuentaBancaria() {
 
-        String informacionCoche = this.idCuentaBancaria + " " + this.dc + " " + this.numeroCuenta;
+        String informacionCoche =this.dc + "         " + this.numeroCuenta;
 
         return informacionCoche;
     }

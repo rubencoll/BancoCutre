@@ -54,10 +54,10 @@ public class BancoCutre {
         MovimientoBancario movimientoBancario2 = new MovimientoBancario(153, TipoMovimientoBancario.HABER, new BigDecimal("500"), new GregorianCalendar(2013, 7, 5).getTime(), new BigDecimal("2000"), "Ingreso Publicidad");
         
 
-        imprimirCuentaBancaria(cuentaBancaria1);
+        imprimirCuentaBancaria(entidadBancaria1, sucursalBancaria1,cuentaBancaria1);
     }
 
-    private static void imprimirCuentaBancaria(CuentaBancaria cuentaBancaria1) {
+    private static void imprimirCuentaBancaria(EntidadBancaria entidadBancaria1, SucursalBancaria sucursalBancaria1, CuentaBancaria cuentaBancaria1) {
         
         
         System.out.println("################# CUENTA BANCARIA #################");
@@ -65,21 +65,21 @@ public class BancoCutre {
         System.out.println("Entidad     Oficina     Control     Numero Cuenta");
 
         System.out.println("-------------------------------------------------");
-           
-        System.out.println(getNumeroCompletoCuentaBancaria(cuentaBancaria1));
+        
+        System.out.println(getNumeroCompletoCuentaBancaria(entidadBancaria1, sucursalBancaria1, cuentaBancaria1));
         
         System.out.println("-------------------------------------------------");
         System.out.println("CIF: "+cuentaBancaria1.getCif());
         System.out.println("-------------------------------------------------");
-        System.out.println("######################################################");
+        System.out.println("##################################################");
 
         System.out.println("");
     }
     
     
-    public static String getNumeroCompletoCuentaBancaria(CuentaBancaria cuentaBancaria) {
+    public static String getNumeroCompletoCuentaBancaria(EntidadBancaria entidadBancaria, SucursalBancaria sucursalBancaria, CuentaBancaria cuentaBancaria) {
 
-        String numeroCompletoCuenta = cuentaBancaria.getNumeroCuentaBancaria();
+        String numeroCompletoCuenta = entidadBancaria.getCodigoEntidadBancaria()+"           "+sucursalBancaria.getCodigoSucursal()+"            "+ cuentaBancaria.getNumeroCuentaBancaria();
 
         return numeroCompletoCuenta;
     }
