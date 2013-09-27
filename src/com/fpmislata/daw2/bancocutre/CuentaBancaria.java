@@ -16,7 +16,7 @@ public class CuentaBancaria {
       
     private int idCuentaBancaria;
     
-    private List<SucursalBancaria> sucursalBancaria;
+    private List<MovimientoBancario> movimientoBancario;
     private String numeroCuenta;
     private String dc;
     private BigDecimal saldo;
@@ -30,7 +30,6 @@ public class CuentaBancaria {
 
     public CuentaBancaria(int idCuentaBancaria, List<SucursalBancaria> sucursalBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
         this.idCuentaBancaria = idCuentaBancaria;
-        this.sucursalBancaria = sucursalBancaria;
         this.numeroCuenta = numeroCuenta;
         this.dc = dc;
         this.saldo = saldo;
@@ -45,13 +44,15 @@ public class CuentaBancaria {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public List<SucursalBancaria> getSucursalBancaria() {
-        return sucursalBancaria;
+    public List<MovimientoBancario> getMovimientoBancario() {
+        return movimientoBancario;
     }
 
-    public void setSucursalBancaria(List<SucursalBancaria> sucursalBancaria) {
-        this.sucursalBancaria = sucursalBancaria;
+    public void setMovimientoBancario(List<MovimientoBancario> movimientoBancario) {
+        this.movimientoBancario = movimientoBancario;
     }
+
+
 
     public String getNumeroCuenta() {
         return numeroCuenta;

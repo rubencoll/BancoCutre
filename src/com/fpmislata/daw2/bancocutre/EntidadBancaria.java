@@ -4,23 +4,24 @@
  */
 package com.fpmislata.daw2.bancocutre;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author alumno
  */
 public class EntidadBancaria {
-    
-     private int idEntidadBancaria;
+
+    private int idEntidadBancaria;
+    private List<SucursalBancaria> sucursalesBancarias = new ArrayList<>();
     private String codigoEntidadBancaria;
     private String nombre;
     private String cif;
     private TipoEntidadBancaria tipoEntidadBancaria;
-    
+
     //Constructor Vacio
-    
-    public EntidadBancaria(){
-    
-    
+    public EntidadBancaria() {
     }
 
     //Constructor Sobrecargado
@@ -30,6 +31,14 @@ public class EntidadBancaria {
         this.nombre = nombre;
         this.cif = cif;
         this.tipoEntidadBancaria = tipoEntidadBancaria;
+    }
+
+    public List<SucursalBancaria> getSucursalesBancarias() {
+        return sucursalesBancarias;
+    }
+
+    public void setSucursalesBancarias(List<SucursalBancaria> sucursalesBancarias) {
+        this.sucursalesBancarias = sucursalesBancarias;
     }
 
     public int getIdEntidadBancaria() {
@@ -71,6 +80,4 @@ public class EntidadBancaria {
     public void setTipoEntidadBancaria(TipoEntidadBancaria tipoEntidadBancaria) {
         this.tipoEntidadBancaria = tipoEntidadBancaria;
     }
-    
-    
 }
