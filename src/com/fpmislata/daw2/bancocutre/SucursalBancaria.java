@@ -24,11 +24,22 @@ public class SucursalBancaria {
     
     }
 
-    public SucursalBancaria(int idSucursalBancaria, String codigoSucursal, String nombre) {
+    public SucursalBancaria(int idSucursalBancaria, EntidadBancaria entidadBancaria, String codigoSucursal, String nombre) {
         this.idSucursalBancaria = idSucursalBancaria;
+        this.entidadBancaria = entidadBancaria;
         this.codigoSucursal = codigoSucursal;
         this.nombre = nombre;
     }
+
+    public EntidadBancaria getEntidadBancaria() {
+        return entidadBancaria;
+    }
+
+    public void setEntidadBancaria(EntidadBancaria entidadBancaria) {
+        this.entidadBancaria = entidadBancaria;
+    }
+
+   
 
     public int getIdSucursalBancaria() {
         return idSucursalBancaria;

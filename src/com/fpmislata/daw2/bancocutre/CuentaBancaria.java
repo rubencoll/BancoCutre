@@ -14,7 +14,7 @@ import java.util.List;
 public class CuentaBancaria {
 
     private int idCuentaBancaria;
-    private List<MovimientoBancario> movimientoBancario;
+    private List<MovimientoBancario> movimientosBancario;
     private SucursalBancaria sucursalBancaria;
     private String numeroCuenta;
     private String dc;
@@ -24,13 +24,16 @@ public class CuentaBancaria {
     public CuentaBancaria() {
     }
 
-    public CuentaBancaria(int idCuentaBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
+    public CuentaBancaria(int idCuentaBancaria, SucursalBancaria sucursalBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
         this.idCuentaBancaria = idCuentaBancaria;
+        this.sucursalBancaria = sucursalBancaria;
         this.numeroCuenta = numeroCuenta;
         this.dc = dc;
         this.saldo = saldo;
         this.cif = cif;
     }
+
+    
 
     public SucursalBancaria getSucursalBancaria() {
         return sucursalBancaria;
@@ -48,13 +51,14 @@ public class CuentaBancaria {
         this.idCuentaBancaria = idCuentaBancaria;
     }
 
-    public List<MovimientoBancario> getMovimientoBancario() {
-        return movimientoBancario;
+    public List<MovimientoBancario> getMovimientosBancario() {
+        return movimientosBancario;
     }
 
-    public void setMovimientoBancario(List<MovimientoBancario> movimientoBancario) {
-        this.movimientoBancario = movimientoBancario;
+    public void setMovimientosBancario(List<MovimientoBancario> movimientosBancario) {
+        this.movimientosBancario = movimientosBancario;
     }
+
 
     public String getNumeroCuenta() {
         return numeroCuenta;
