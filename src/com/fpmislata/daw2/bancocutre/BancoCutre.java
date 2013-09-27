@@ -51,13 +51,37 @@ public class BancoCutre {
 
 
         MovimientoBancario movimientoBancario1 = new MovimientoBancario(9876, TipoMovimientoBancario.DEBE, new BigDecimal("200"), new GregorianCalendar(2013, 4, 22).getTime(), new BigDecimal("5000"), "Pago Contribución");
+        MovimientoBancario movimientoBancario2 = new MovimientoBancario(153, TipoMovimientoBancario.HABER, new BigDecimal("500"), new GregorianCalendar(2013, 7, 5).getTime(), new BigDecimal("2000"), "Ingreso Publicidad");
         
 
         imprimirCuentaBancaria(cuentaBancaria1);
     }
 
     private static void imprimirCuentaBancaria(CuentaBancaria cuentaBancaria1) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        
+        System.out.println("################# CUENTA BANCARIA #################");
+        System.out.println("-------------------------------------------------");
+        System.out.println("Entidad     Oficina     Control     Numero Cuenta");
+
+        System.out.println("-------------------------------------------------");
+           
+        System.out.println(getNumeroCompletoCuentaBancaria(cuentaBancaria1));
+        
+        System.out.println("-------------------------------------------------");
+        System.out.println("CIF: "+cuentaBancaria1.getCif());
+        System.out.println("-------------------------------------------------");
+        System.out.println("######################################################");
+
+        System.out.println("");
+    }
+    
+    
+    public static String getNumeroCompletoCuentaBancaria(CuentaBancaria cuentaBancaria) {
+
+        String numeroCompletoCuenta = cuentaBancaria.getNumeroCuentaBancaria();
+
+        return numeroCompletoCuenta;
     }
     
     

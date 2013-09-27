@@ -94,5 +94,11 @@ public class CuentaBancaria {
 
         return informacionCoche;
     }
+     public String getNumeroCuentaBancaria() {
+
+        String informacionCoche = this.idCuentaBancaria + " " + this.dc + " " + this.numeroCuenta;
+
+        return informacionCoche;
+    }
     
 }
