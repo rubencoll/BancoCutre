@@ -36,6 +36,8 @@ public class SucursalBancaria {
     public void setIdSucursalBancaria(int idSucursalBancaria) {
         this.idSucursalBancaria = idSucursalBancaria;
     }
+    
+    
 
     public List<CuentaBancaria> getCuentasBancarias() {
         return cuentasBancarias;

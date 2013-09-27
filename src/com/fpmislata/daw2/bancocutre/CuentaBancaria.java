@@ -28,7 +28,7 @@ public class CuentaBancaria {
     
     }
 
-    public CuentaBancaria(int idCuentaBancaria, List<SucursalBancaria> sucursalBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
+    public CuentaBancaria(int idCuentaBancaria, String numeroCuenta, String dc, BigDecimal saldo, String cif) {
         this.idCuentaBancaria = idCuentaBancaria;
         this.numeroCuenta = numeroCuenta;
         this.dc = dc;

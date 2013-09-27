@@ -5,7 +5,9 @@
 package com.fpmislata.daw2.bancocutre;
 
 import java.math.BigDecimal;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -22,16 +24,19 @@ public class MovimientoBancario {
     private BigDecimal saldoTotal;
     private String concepto;
     
+    
     public MovimientoBancario(){
-    
-    
+   
     
     }
 
-    public MovimientoBancario(int idMovimientoBancario, List<CuentaBancaria> cuentaBancaria, TipoMovimientoBancario tipoMovimientoBancario, BigDecimal importe, Date fecha, BigDecimal saldoTotal, String concepto) {
+    public MovimientoBancario(int idMovimientoBancario, TipoMovimientoBancario tipoMovimientoBancario, BigDecimal importe, Date fecha, BigDecimal saldoTotal, String concepto) {
+ 
         this.idMovimientoBancario = idMovimientoBancario;
         this.tipoMovimientoBancario = tipoMovimientoBancario;
         this.importe = importe;
+        //SimpleDateFormat sd = new SimpleDateFormat("DD/MM/YYYY");
+        //sd.format(this.fecha);
         this.fecha = fecha;
         this.saldoTotal = saldoTotal;
         this.concepto = concepto;
@@ -69,6 +74,8 @@ public class MovimientoBancario {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+
 
     public BigDecimal getSaldoTotal() {
         return saldoTotal;
