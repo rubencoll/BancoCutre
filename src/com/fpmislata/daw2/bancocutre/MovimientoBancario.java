@@ -101,4 +101,10 @@ public class MovimientoBancario {
         this.concepto = concepto;
     }
     
+     public String getLineaMovimientoBancario() {
+
+        String informacionCoche = this.fecha +"     "+ this.concepto + "         " + this.importe+"      "+this.getTipoMovimientoBancario()+ "       "+this.saldoTotal;
+
+        return informacionCoche;
+    }
 }
