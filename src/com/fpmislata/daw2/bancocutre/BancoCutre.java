@@ -24,7 +24,7 @@ public class BancoCutre {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        SimpleDateFormat sd = new SimpleDateFormat("DD/MM/YYYY");
+        
 
         EntidadBancaria entidadBancaria1 = new EntidadBancaria(69, "1", "BankStafa", "1234", TipoEntidadBancaria.BANCO);
 
@@ -98,13 +98,15 @@ public class BancoCutre {
     //Imprimir los movimientos bancarios
     public static void imprimirMovimientosCuentaBancaria(List<MovimientoBancario> movimientosBancarios) {
 
+        SimpleDateFormat sd = new SimpleDateFormat("dd/MM/YYYY");
+        
         System.out.println("################# CUENTA BANCARIA #################");
         System.out.println("-------------------------------------------------");
         System.out.println("Fecha     Concept     Importe     Tipo     Saldo Total");
         System.out.println("-------------------------------------------------");
 
         for (MovimientoBancario movimientoBancario : movimientosBancarios) {
-               movimientoBancario.getLineaMovimientoBancario();
+               System.out.println(sd.format(movimientoBancario.getFecha())+"   "+movimientoBancario.getConcepto()+"    "+movimientoBancario.getImporte()+" "+movimientoBancario.getTipoMovimientoBancario()+"  "+movimientoBancario.getSaldoTotal());
         }
 
         // System.out.println(getMovimientoCuentaBancaria(cuentaBancaria, mapCuentaBancaria));

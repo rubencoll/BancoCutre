@@ -5,6 +5,7 @@
 package com.fpmislata.daw2.bancocutre;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -20,9 +21,9 @@ public class Conexion {
     static final String USER = "root";
     static final String PASS = "root";
    
-    Connection conn = null;
+    Connection connexion = null;
     
     
-    String selectSQL = "SELECT USER";
+ 
 
 }
