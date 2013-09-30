@@ -44,7 +44,7 @@ public class BancoCutre {
         CuentaBancaria cuentaBancaria3 = new CuentaBancaria(65, sucursalBancaria1, "897553", "78", new BigDecimal("678000"), "87654321B");
 
         Map<Integer, CuentaBancaria> mapCuentaBancaria = new HashMap<>();  //Declaramos el Map de entidad bancaria.
-        mapCuentaBancaria.put(cuentaBancaria1.getIdCuentaBancaria(), cuentaBancaria1);
+        //mapCuentaBancaria.put(cuentaBancaria1.getIdCuentaBancaria(), cuentaBancaria1);
 
         List<CuentaBancaria> cuentasBancarias = sucursalBancaria1.getCuentasBancarias();
 
@@ -57,9 +57,13 @@ public class BancoCutre {
         MovimientoBancario movimientoBancario1 = new MovimientoBancario(9876, TipoMovimientoBancario.DEBE, new BigDecimal("200"), new GregorianCalendar(2013, 4, 22).getTime(), new BigDecimal("5000"), "Pago Contribución", cuentaBancaria1);
         MovimientoBancario movimientoBancario2 = new MovimientoBancario(153, TipoMovimientoBancario.HABER, new BigDecimal("500"), new GregorianCalendar(2013, 7, 5).getTime(), new BigDecimal("2000"), "Ingreso Publicidad", cuentaBancaria1);
 
+        List<MovimientoBancario> movimientosBancarios = cuentaBancaria1.getMovimientosBancario();
+
+        movimientosBancarios.add(movimientoBancario1);
+        movimientosBancarios.add(movimientoBancario2);
 
         imprimirCuentaBancaria(cuentaBancaria1);
-        imprimirMovimientosCuentaBancaria(cuentaBancaria1, mapCuentaBancaria);
+        imprimirMovimientosCuentaBancaria(movimientosBancarios);
 
     }
 
@@ -92,24 +96,19 @@ public class BancoCutre {
     }
 
     //Imprimir los movimientos bancarios
-    public static void imprimirMovimientosCuentaBancaria(CuentaBancaria cuentaBancaria, Map<Integer, CuentaBancaria> mapCuentaBancaria) {
+    public static void imprimirMovimientosCuentaBancaria(List<MovimientoBancario> movimientosBancarios) {
 
-        List<MovimientoBancario> movimientosBancarios = cuentaBancaria.getMovimientosBancario();
-                
         System.out.println("################# CUENTA BANCARIA #################");
         System.out.println("-------------------------------------------------");
         System.out.println("Fecha     Concept     Importe     Tipo     Saldo Total");
         System.out.println("-------------------------------------------------");
-        
-        for(MovimientoBancario movimientoBancario : movimientosBancarios){
-        
-            movimientoBancario.getLineaMovimientoBancario();
-        }
-        
-       // System.out.println(getMovimientoCuentaBancaria(cuentaBancaria, mapCuentaBancaria));
 
-        System.out.println("-------------------------------------------------");
-        System.out.println("CIF: " + cuentaBancaria.getCif());
+        for (MovimientoBancario movimientoBancario : movimientosBancarios) {
+               movimientoBancario.getLineaMovimientoBancario();
+        }
+
+        // System.out.println(getMovimientoCuentaBancaria(cuentaBancaria, mapCuentaBancaria));
+
         System.out.println("-------------------------------------------------");
         System.out.println("##################################################");
 
@@ -118,10 +117,10 @@ public class BancoCutre {
 
     private static String getMovimientoCuentaBancaria(CuentaBancaria cuentaBancaria, Map<Integer, CuentaBancaria> mapCuentaBancaria) {
 
-        
-        CuentaBancaria cuentaBancariaBusqueda = buscarCuentaBancariaMapID(mapCuentaBancaria,cuentaBancaria.getIdCuentaBancaria());
 
-        
+        CuentaBancaria cuentaBancariaBusqueda = buscarCuentaBancariaMapID(mapCuentaBancaria, cuentaBancaria.getIdCuentaBancaria());
+
+
         String movimientoCuentaBancaria = null;
         return movimientoCuentaBancaria;
     }
@@ -130,7 +129,7 @@ public class BancoCutre {
 
         CuentaBancaria cuentaBancaria = mapCuentaBancaria.get(idCuentaBancaria);
         // List<SucursalBancaria> listaSucursalesBancarias = cuentaBancaria.getSucursalBancaria();
-        
+
         return cuentaBancaria;
     }
 }

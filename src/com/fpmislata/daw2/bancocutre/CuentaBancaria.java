@@ -5,6 +5,7 @@
 package com.fpmislata.daw2.bancocutre;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ import java.util.List;
 public class CuentaBancaria {
 
     private int idCuentaBancaria;
-    private List<MovimientoBancario> movimientosBancario;
+    private List<MovimientoBancario> movimientosBancario = new ArrayList<MovimientoBancario>();
     private SucursalBancaria sucursalBancaria;
     private String numeroCuenta;
     private String dc;
