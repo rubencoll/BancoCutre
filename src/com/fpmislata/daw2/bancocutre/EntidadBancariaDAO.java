@@ -39,7 +39,7 @@ public class EntidadBancariaDAO {
 
     public EntidadBancaria read(int idEntidadBancaria) throws SQLException {
 
-        EntidadBancaria entidadBancaria = null;
+        EntidadBancaria entidadBancaria;
 
         String selectSQL = "SELECT * FROM entidadbancaria WHERE idEntidadBancaria = ?";
 
@@ -69,9 +69,9 @@ public class EntidadBancariaDAO {
                 // System.out.println("Hay mas de 1");
             }
 
-        } else {
+        } else {    //Si no existe retornara un NULL
 
-            throw new RuntimeException("No existe la entidad: " + idEntidadBancaria);
+            entidadBancaria = null;
 
         }
 
