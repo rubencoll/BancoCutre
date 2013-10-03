@@ -4,6 +4,7 @@
  */
 package com.fpmislata.daw2.bancocutre;
 
+import static com.fpmislata.daw2.bancocutre.EntidadBancariaDAO.USER;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import java.sql.PreparedStatement;
  */
 public class Conexion {
     
-   
+
     
  
 
