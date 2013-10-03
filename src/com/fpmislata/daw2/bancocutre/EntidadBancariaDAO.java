@@ -37,9 +37,9 @@ public class EntidadBancariaDAO {
 
     }
 
-    private EntidadBancaria read(int idEntidadBancaria) throws SQLException {
+    public EntidadBancaria read(int idEntidadBancaria) throws SQLException {
 
-        EntidadBancaria entidadBancaria = new EntidadBancaria();
+        EntidadBancaria entidadBancaria = null;
 
         String selectSQL = "SELECT * FROM entidadbancaria WHERE idEntidadBancaria = ?";
 
@@ -49,16 +49,20 @@ public class EntidadBancariaDAO {
         ResultSet resultSet = preparedStatementSelect.executeQuery();
 
         if (resultSet.next() == true) {
-
+            
+            entidadBancaria = new EntidadBancaria();
+            
             idEntidadBancaria = resultSet.getInt("idEntidadBancaria");
             String codigoEntidadBancaria = resultSet.getString("codigoEntidadBancaria");
             String nombre = resultSet.getString("nombre");
             String cif = resultSet.getString("cif");
+            String tipoEntidadBancaria = resultSet.getString("tipoEntidadBancaria");
 
             entidadBancaria.setIdEntidadBancaria(idEntidadBancaria);
             entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
+            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(resultSet.getString("tipoEntidadBancaria")));
 
             if (resultSet.next() == true) {
                 throw new RuntimeException("Hay mas de una entidad Bancaria con codigo: " + codigoEntidadBancaria);
@@ -68,14 +72,15 @@ public class EntidadBancariaDAO {
         } else {
 
             throw new RuntimeException("No existe la entidad: " + idEntidadBancaria);
+
         }
 
         return entidadBancaria;
     }
 
-    private void insert(EntidadBancaria entidadBancaria) throws SQLException {
+    public void insert(EntidadBancaria entidadBancaria) throws SQLException {
 
-        String insertSQL = "INSERT INTO EntidadBancaria (idEntidadBancaria, codigoEntidadBancaria,nombre,cif) VALUES (?,?,?,?)";
+        String insertSQL = "INSERT INTO EntidadBancaria (idEntidadBancaria, codigoEntidadBancaria,nombre,cif,tipoEntidadBancaria) VALUES (?,?,?,?,?)";
 
         PreparedStatement preparedStatementInsert = connection.prepareStatement(insertSQL);
 
@@ -83,13 +88,14 @@ public class EntidadBancariaDAO {
         preparedStatementInsert.setString(2, entidadBancaria.getCodigoEntidadBancaria());
         preparedStatementInsert.setString(3, entidadBancaria.getNombre());
         preparedStatementInsert.setString(4, entidadBancaria.getCif());
+        preparedStatementInsert.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
 
         preparedStatementInsert.executeUpdate();
     }
 
-    private void update(EntidadBancaria entidadBancaria) throws SQLException {
+    public void update(EntidadBancaria entidadBancaria) throws SQLException {
 
-        String updateSQL = "UPDATE entidadBancaria SET codigoEntidadBancaria = ?, nombre = ?, cif = ? WHERE idEntidadBancaria = ?";
+        String updateSQL = "UPDATE entidadBancaria SET codigoEntidadBancaria = ?, nombre = ?, cif = ?, tipoEntidadBancaria = ? WHERE idEntidadBancaria = ?";
 
         PreparedStatement preparedStatementUpdate = connection.prepareStatement(updateSQL);
 
@@ -97,11 +103,12 @@ public class EntidadBancariaDAO {
         preparedStatementUpdate.setString(2, entidadBancaria.getNombre());
         preparedStatementUpdate.setString(3, entidadBancaria.getCif());
         preparedStatementUpdate.setInt(4, entidadBancaria.getIdEntidadBancaria());
+        preparedStatementUpdate.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
 
         preparedStatementUpdate.executeUpdate();
     }
 
-    private void delete(EntidadBancaria entidadBancaria) throws SQLException {
+    public void delete(EntidadBancaria entidadBancaria) throws SQLException {
 
         String deleteSQL = "DELETE FROM entidadBancaria WHERE idEntidadBancaria = ?";
 
@@ -109,22 +116,16 @@ public class EntidadBancariaDAO {
 
         preparedStatementDelete.setInt(1, entidadBancaria.getIdEntidadBancaria());
 
-
-        if (preparedStatementDelete.executeUpdate() > 1) {     //Si hay más de una entidad con el mismo ID
+        int numeroEntidades = preparedStatementDelete.executeUpdate();
+        
+        if (numeroEntidades > 1) {     //Si hay más de una entidad con el mismo ID
 
             throw new RuntimeException("Hay mas de una entidad Bancaria con Identificador: " + entidadBancaria.getIdEntidadBancaria());
-        
-        } else if(preparedStatementDelete.executeUpdate() == 1){
-            
-            preparedStatementDelete.executeUpdate();
-            
-        } else {
-        
-            throw new RuntimeException("No existen Entidades Bancarias con Identificador"+entidadBancaria.getIdEntidadBancaria());
-        }
+
+        } 
     }
 
-    private List<EntidadBancaria> findAll() throws SQLException {
+    public List<EntidadBancaria> findAll() throws SQLException {
 
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
 
@@ -141,11 +142,13 @@ public class EntidadBancariaDAO {
             String codigoEntidadBancaria = resultSet.getString("codigoEntidadBancaria");
             String nombre = resultSet.getString("nombre");
             String cif = resultSet.getString("cif");
+            String tipoEntidadBancaria = resultSet.getString("tipoEntidadBancaria");
 
             entidadBancaria.setIdEntidadBancaria(idEntidadBancaria);
             entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
+            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(entidadBancaria.getTipoEntidadBancaria().name()));
 
             entidadesBancarias.add(entidadBancaria);
 
@@ -154,7 +157,7 @@ public class EntidadBancariaDAO {
         return entidadesBancarias;
     }
 
-    private List<EntidadBancaria> findByCodigo(String codigo) throws SQLException {
+    public List<EntidadBancaria> findByCodigo(String codigo) throws SQLException {
 
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
 
@@ -167,18 +170,20 @@ public class EntidadBancariaDAO {
         ResultSet resultSet = preparedStatementSelect.executeQuery();
 
         while (resultSet.next()) {
-            
+
             EntidadBancaria entidadBancaria = new EntidadBancaria();
 
             int idEntidadBancaria = resultSet.getInt("idEntidadBancaria");
             String codigoEntidadBancaria = resultSet.getString("codigoEntidadBancaria");
             String nombre = resultSet.getString("nombre");
             String cif = resultSet.getString("cif");
+            String tipoEntidadBancaria = resultSet.getString("tipoEntidadBancaria");
 
             entidadBancaria.setIdEntidadBancaria(idEntidadBancaria);
             entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
+            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(entidadBancaria.getTipoEntidadBancaria().name()));
 
             entidadesBancarias.add(entidadBancaria);
 
