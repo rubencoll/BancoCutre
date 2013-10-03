@@ -100,41 +100,44 @@ public class EntidadBancariaDAO {
 
         preparedStatementUpdate.executeUpdate();
     }
-    
-    
-    private void delete(EntidadBancaria entidadBancaria) throws SQLException{
-    
-     String deleteSQL = "DELETE FROM entidadBancaria WHERE idEntidadBancaria = ?";
+
+    private void delete(EntidadBancaria entidadBancaria) throws SQLException {
+
+        String deleteSQL = "DELETE FROM entidadBancaria WHERE idEntidadBancaria = ?";
 
         PreparedStatement preparedStatementDelete = connection.prepareStatement(deleteSQL);
 
         preparedStatementDelete.setInt(1, entidadBancaria.getIdEntidadBancaria());
 
+
+        if (preparedStatementDelete.executeUpdate() > 1) {     //Si hay más de una entidad con el mismo ID
+
+            throw new RuntimeException("Hay mas de una entidad Bancaria con Identificador: " + entidadBancaria.getIdEntidadBancaria());
         
-        if(preparedStatementDelete.executeUpdate()==1){     //Si hay más de una entidad con el mismo ID
+        } else if(preparedStatementDelete.executeUpdate() == 1){
             
-            throw new RuntimeException("Hay mas de una entidad Bancaria con Identificador: " +entidadBancaria.getIdEntidadBancaria());
-        }else{
             preparedStatementDelete.executeUpdate();
+            
+        } else {
+        
+            throw new RuntimeException("No existen Entidades Bancarias con Identificador"+entidadBancaria.getIdEntidadBancaria());
         }
     }
-    
-    private List<EntidadBancaria> findAll() throws SQLException{
-    
+
+    private List<EntidadBancaria> findAll() throws SQLException {
+
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
-        
-        EntidadBancaria entidadBancaria = new EntidadBancaria();
 
         String selectSQL = "SELECT * FROM entidadbancaria";
 
         PreparedStatement preparedStatementSelect = connection.prepareStatement(selectSQL);
-        preparedStatementSelect.setInt(1, idEntidadBancaria);
-        preparedStatementSelect.setString(2, "11");
         ResultSet resultSet = preparedStatementSelect.executeQuery();
 
         while (resultSet.next()) {
 
-            idEntidadBancaria = resultSet.getInt("idEntidadBancaria");
+            EntidadBancaria entidadBancaria = new EntidadBancaria();
+
+            int idEntidadBancaria = resultSet.getInt("idEntidadBancaria");
             String codigoEntidadBancaria = resultSet.getString("codigoEntidadBancaria");
             String nombre = resultSet.getString("nombre");
             String cif = resultSet.getString("cif");
@@ -144,19 +147,43 @@ public class EntidadBancariaDAO {
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
 
-            if (resultSet.next() == true) {
-                throw new RuntimeException("Hay mas de una entidad Bancaria con codigo: " + codigoEntidadBancaria);
-                // System.out.println("Hay mas de 1");
-            }
+            entidadesBancarias.add(entidadBancaria);
 
-        } else {
-
-            throw new RuntimeException("No existe la entidad: " + idEntidadBancaria);
         }
-        
-        
+
         return entidadesBancarias;
-    
     }
-    
+
+    private List<EntidadBancaria> findByCodigo(String codigo) throws SQLException {
+
+        List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
+
+        String selectSQL = "SELECT * FROM entidadbancaria WHERE codigoEntidadBancaria = ?";
+
+
+        PreparedStatement preparedStatementSelect = connection.prepareStatement(selectSQL);
+        preparedStatementSelect.setString(1, codigo);
+
+        ResultSet resultSet = preparedStatementSelect.executeQuery();
+
+        while (resultSet.next()) {
+            
+            EntidadBancaria entidadBancaria = new EntidadBancaria();
+
+            int idEntidadBancaria = resultSet.getInt("idEntidadBancaria");
+            String codigoEntidadBancaria = resultSet.getString("codigoEntidadBancaria");
+            String nombre = resultSet.getString("nombre");
+            String cif = resultSet.getString("cif");
+
+            entidadBancaria.setIdEntidadBancaria(idEntidadBancaria);
+            entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
+            entidadBancaria.setNombre(nombre);
+            entidadBancaria.setCif(cif);
+
+            entidadesBancarias.add(entidadBancaria);
+
+        }
+
+        return null;
+    }
 }
