@@ -2,8 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.daw2.bancocutre;
+package com.fpmislata.daw2.bancocutre.datos;
 
+import com.fpmislata.daw2.bancocutre.negocio.EntidadBancaria;
+import com.fpmislata.daw2.bancocutre.negocio.TipoEntidadBancaria;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

@@ -2,8 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.fpmislata.daw2.bancocutre;
+package com.fpmislata.daw2.bancocutre.presentacion;
 
+import com.fpmislata.daw2.bancocutre.negocio.CuentaBancaria;
+import com.fpmislata.daw2.bancocutre.negocio.EntidadBancaria;
+import com.fpmislata.daw2.bancocutre.negocio.MovimientoBancario;
+import com.fpmislata.daw2.bancocutre.negocio.SucursalBancaria;
+import com.fpmislata.daw2.bancocutre.negocio.TipoEntidadBancaria;
+import com.fpmislata.daw2.bancocutre.negocio.TipoMovimientoBancario;
+import com.fpmislata.daw2.bancocutre.datos.EntidadBancariaDAO;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
