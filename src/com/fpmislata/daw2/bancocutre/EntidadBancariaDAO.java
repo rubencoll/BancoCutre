@@ -84,7 +84,7 @@ public class EntidadBancariaDAO {
         preparedStatementInsert.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
 
         preparedStatementInsert.executeUpdate();
-        connection.close();
+        connectionFactory.close(connection);
     }
 
     public void update(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
@@ -98,11 +98,11 @@ public class EntidadBancariaDAO {
         preparedStatementUpdate.setString(1, entidadBancaria.getCodigoEntidadBancaria());
         preparedStatementUpdate.setString(2, entidadBancaria.getNombre());
         preparedStatementUpdate.setString(3, entidadBancaria.getCif());
-        preparedStatementUpdate.setInt(4, entidadBancaria.getIdEntidadBancaria());
-        preparedStatementUpdate.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
-
+        preparedStatementUpdate.setString(4, entidadBancaria.getTipoEntidadBancaria().name());
+        preparedStatementUpdate.setInt(5, entidadBancaria.getIdEntidadBancaria());
+        
         preparedStatementUpdate.executeUpdate();
-        connection.close();
+        connectionFactory.close(connection);
     }
 
     public void delete(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
@@ -122,7 +122,7 @@ public class EntidadBancariaDAO {
             throw new RuntimeException("Hay mas de una entidad Bancaria con Identificador: " + entidadBancaria.getIdEntidadBancaria());
 
         }
-        connection.close();
+        connectionFactory.close(connection);
     }
 
     public List<EntidadBancaria> findAll() throws SQLException, ClassNotFoundException {
@@ -155,7 +155,7 @@ public class EntidadBancariaDAO {
             entidadesBancarias.add(entidadBancaria);
 
         }
-        connection.close();
+        connectionFactory.close(connection);
         return entidadesBancarias;
     }
 
@@ -191,7 +191,7 @@ public class EntidadBancariaDAO {
             entidadesBancarias.add(entidadBancaria);
 
         }
-        connection.close();
+        connectionFactory.close(connection);
         return null;
     }
 }

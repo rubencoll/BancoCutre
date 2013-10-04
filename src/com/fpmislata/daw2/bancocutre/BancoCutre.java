@@ -81,6 +81,51 @@ public class BancoCutre {
         System.out.println(entidadBancariaBuscada.getTipoEntidadBancaria());
         
         
+        //Prueba de Insercion de Entidad Bancaria
+        
+        
+        EntidadBancaria entidadBancariaInsertar = new EntidadBancaria();
+        entidadBancariaInsertar.setIdEntidadBancaria(4);
+        entidadBancariaInsertar.setCodigoEntidadBancaria("33");
+        entidadBancariaInsertar.setNombre("Banesto");
+        entidadBancariaInsertar.setCif("8888888D");
+        entidadBancariaInsertar.setTipoEntidadBancaria(TipoEntidadBancaria.ESTABLECIMIENTOS_FINANCIEROS_DE_CREDITO);
+        
+        entidadBancariaDAO.insert(entidadBancariaInsertar);
+        
+        
+        //Prueba de Update de Entidad Bancaria
+        
+        EntidadBancaria entidadBancariaUpdate = entidadBancariaInsertar;
+        
+        entidadBancariaUpdate.setNombre("Caja Madrid");
+        
+        entidadBancariaDAO.update(entidadBancariaUpdate);
+        
+        
+        //Prueba de Delete Entidad Bancaria
+        
+        EntidadBancaria entidadBancariaDelete = entidadBancariaInsertar;
+        
+        entidadBancariaDAO.delete(entidadBancariaInsertar);
+        
+        
+        //Prueba de ver todas la entidades Bancarias
+        
+        
+        List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
+        
+        entidadesBancarias = entidadBancariaDAO.findAll();
+        
+        for(EntidadBancaria entidadBancaria : entidadesBancarias){
+        
+            entidadBancaria.getIdEntidadBancaria();
+            entidadBancaria.getCodigoEntidadBancaria();
+            entidadBancaria.getNombre();
+            entidadBancaria.getTipoEntidadBancaria();
+            entidadBancaria.getCif();
+        }
+        
 
     }
 

@@ -20,7 +20,7 @@ public interface ConnectionFactory {
     
 
     public Connection getConnection() throws SQLException, ClassNotFoundException;
-    public void close()throws SQLException, ClassNotFoundException;
+    public void close(Connection connection)throws SQLException, ClassNotFoundException;
    
 
 }

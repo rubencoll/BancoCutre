@@ -34,7 +34,7 @@ public class ConnectionFactoryImplJDBC implements ConnectionFactory {
     }
 
     @Override
-    public void close() throws SQLException, ClassNotFoundException {
+    public void close(Connection connection) throws SQLException, ClassNotFoundException {
         
     }
 
