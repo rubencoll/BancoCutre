@@ -19,19 +19,13 @@ import java.util.List;
 //  Database credentials
 public class EntidadBancariaDAO {
 
-    
     ConnectionFactory connectionFactory = new ConnectionFactoryImplJDBC();
-    
-    
 
     public EntidadBancariaDAO() throws ClassNotFoundException, SQLException {
-
-      
-
     }
 
     public EntidadBancaria read(int idEntidadBancaria) throws SQLException, ClassNotFoundException {
-        
+
         Connection connection = connectionFactory.getConnection();
 
         EntidadBancaria entidadBancaria;
@@ -40,13 +34,13 @@ public class EntidadBancariaDAO {
 
         PreparedStatement preparedStatementSelect = connection.prepareStatement(selectSQL);
         preparedStatementSelect.setInt(1, idEntidadBancaria);
-        
+
         ResultSet resultSet = preparedStatementSelect.executeQuery();
 
         if (resultSet.next() == true) {
-            
+
             entidadBancaria = new EntidadBancaria();
-            
+
             idEntidadBancaria = resultSet.getInt("idEntidadBancaria");
             String codigoEntidadBancaria = resultSet.getString("codigoEntidadBancaria");
             String nombre = resultSet.getString("nombre");
@@ -70,11 +64,13 @@ public class EntidadBancariaDAO {
 
         }
 
+        connection.close();
         return entidadBancaria;
+
     }
 
     public void insert(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
-        
+
         Connection connection = connectionFactory.getConnection();
 
         String insertSQL = "INSERT INTO EntidadBancaria (idEntidadBancaria, codigoEntidadBancaria,nombre,cif,tipoEntidadBancaria) VALUES (?,?,?,?,?)";
@@ -88,10 +84,11 @@ public class EntidadBancariaDAO {
         preparedStatementInsert.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
 
         preparedStatementInsert.executeUpdate();
+        connection.close();
     }
 
     public void update(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
-        
+
         Connection connection = connectionFactory.getConnection();
 
         String updateSQL = "UPDATE entidadBancaria SET codigoEntidadBancaria = ?, nombre = ?, cif = ?, tipoEntidadBancaria = ? WHERE idEntidadBancaria = ?";
@@ -105,10 +102,11 @@ public class EntidadBancariaDAO {
         preparedStatementUpdate.setString(5, entidadBancaria.getTipoEntidadBancaria().name());
 
         preparedStatementUpdate.executeUpdate();
+        connection.close();
     }
 
     public void delete(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
-        
+
         Connection connection = connectionFactory.getConnection();
 
         String deleteSQL = "DELETE FROM entidadBancaria WHERE idEntidadBancaria = ?";
@@ -118,16 +116,17 @@ public class EntidadBancariaDAO {
         preparedStatementDelete.setInt(1, entidadBancaria.getIdEntidadBancaria());
 
         int numeroEntidades = preparedStatementDelete.executeUpdate();
-        
+
         if (numeroEntidades > 1) {     //Si hay más de una entidad con el mismo ID
 
             throw new RuntimeException("Hay mas de una entidad Bancaria con Identificador: " + entidadBancaria.getIdEntidadBancaria());
 
-        } 
+        }
+        connection.close();
     }
 
     public List<EntidadBancaria> findAll() throws SQLException, ClassNotFoundException {
-        
+
         Connection connection = connectionFactory.getConnection();
 
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
@@ -156,18 +155,17 @@ public class EntidadBancariaDAO {
             entidadesBancarias.add(entidadBancaria);
 
         }
-
+        connection.close();
         return entidadesBancarias;
     }
 
     public List<EntidadBancaria> findByCodigo(String codigo) throws SQLException, ClassNotFoundException {
-        
+
         Connection connection = connectionFactory.getConnection();
 
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
 
         String selectSQL = "SELECT * FROM entidadbancaria WHERE codigoEntidadBancaria = ?";
-
 
         PreparedStatement preparedStatementSelect = connection.prepareStatement(selectSQL);
         preparedStatementSelect.setString(1, codigo);
@@ -193,7 +191,7 @@ public class EntidadBancariaDAO {
             entidadesBancarias.add(entidadBancaria);
 
         }
-
+        connection.close();
         return null;
     }
 }
