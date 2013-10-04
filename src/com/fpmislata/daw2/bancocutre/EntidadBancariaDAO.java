@@ -19,25 +19,20 @@ import java.util.List;
 //  Database credentials
 public class EntidadBancariaDAO {
 
-    static final String USER = "root";
-    static final String PASS = "root";
-    Connection connection = null;
+    
+    ConnectionFactory connectionFactory = new ConnectionFactoryImplJDBC();
+    
+    
 
     public EntidadBancariaDAO() throws ClassNotFoundException, SQLException {
 
-        // JDBC driver name and database URL
-
-        Class.forName("com.mysql.jdbc.Driver");
-
-        //connection = null;
-
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/banco", USER, PASS);
-
-        System.out.println("Conexion Realizada");
+      
 
     }
 
-    public EntidadBancaria read(int idEntidadBancaria) throws SQLException {
+    public EntidadBancaria read(int idEntidadBancaria) throws SQLException, ClassNotFoundException {
+        
+        Connection connection = connectionFactory.getConnection();
 
         EntidadBancaria entidadBancaria;
 
@@ -45,7 +40,7 @@ public class EntidadBancariaDAO {
 
         PreparedStatement preparedStatementSelect = connection.prepareStatement(selectSQL);
         preparedStatementSelect.setInt(1, idEntidadBancaria);
-        preparedStatementSelect.setString(2, "11");
+        
         ResultSet resultSet = preparedStatementSelect.executeQuery();
 
         if (resultSet.next() == true) {
@@ -78,7 +73,9 @@ public class EntidadBancariaDAO {
         return entidadBancaria;
     }
 
-    public void insert(EntidadBancaria entidadBancaria) throws SQLException {
+    public void insert(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
+        
+        Connection connection = connectionFactory.getConnection();
 
         String insertSQL = "INSERT INTO EntidadBancaria (idEntidadBancaria, codigoEntidadBancaria,nombre,cif,tipoEntidadBancaria) VALUES (?,?,?,?,?)";
 
@@ -93,7 +90,9 @@ public class EntidadBancariaDAO {
         preparedStatementInsert.executeUpdate();
     }
 
-    public void update(EntidadBancaria entidadBancaria) throws SQLException {
+    public void update(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
+        
+        Connection connection = connectionFactory.getConnection();
 
         String updateSQL = "UPDATE entidadBancaria SET codigoEntidadBancaria = ?, nombre = ?, cif = ?, tipoEntidadBancaria = ? WHERE idEntidadBancaria = ?";
 
@@ -108,7 +107,9 @@ public class EntidadBancariaDAO {
         preparedStatementUpdate.executeUpdate();
     }
 
-    public void delete(EntidadBancaria entidadBancaria) throws SQLException {
+    public void delete(EntidadBancaria entidadBancaria) throws SQLException, ClassNotFoundException {
+        
+        Connection connection = connectionFactory.getConnection();
 
         String deleteSQL = "DELETE FROM entidadBancaria WHERE idEntidadBancaria = ?";
 
@@ -125,7 +126,9 @@ public class EntidadBancariaDAO {
         } 
     }
 
-    public List<EntidadBancaria> findAll() throws SQLException {
+    public List<EntidadBancaria> findAll() throws SQLException, ClassNotFoundException {
+        
+        Connection connection = connectionFactory.getConnection();
 
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
 
@@ -157,7 +160,9 @@ public class EntidadBancariaDAO {
         return entidadesBancarias;
     }
 
-    public List<EntidadBancaria> findByCodigo(String codigo) throws SQLException {
+    public List<EntidadBancaria> findByCodigo(String codigo) throws SQLException, ClassNotFoundException {
+        
+        Connection connection = connectionFactory.getConnection();
 
         List<EntidadBancaria> entidadesBancarias = new ArrayList<>();
 

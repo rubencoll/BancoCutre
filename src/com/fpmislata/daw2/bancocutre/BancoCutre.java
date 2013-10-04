@@ -74,6 +74,13 @@ public class BancoCutre {
         
         EntidadBancaria entidadBancariaBuscada = new EntidadBancaria();
         entidadBancariaBuscada=entidadBancariaDAO.read(idEntidadBancariaBuscarda);
+        
+        System.out.println(entidadBancariaBuscada.getIdEntidadBancaria());
+        System.out.println(entidadBancariaBuscada.getCodigoEntidadBancaria());
+        System.out.println(entidadBancariaBuscada.getNombre());
+        System.out.println(entidadBancariaBuscada.getTipoEntidadBancaria());
+        
+        
 
     }
 
