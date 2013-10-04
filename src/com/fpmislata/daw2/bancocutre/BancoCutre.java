@@ -68,7 +68,7 @@ public class BancoCutre {
         
         //Prueba para buscar una entidad Bancaria mediante ID
         
-        int idEntidadBancariaBuscarda = 1;
+        int idEntidadBancariaBuscarda = 3;
         
         EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAO();
         

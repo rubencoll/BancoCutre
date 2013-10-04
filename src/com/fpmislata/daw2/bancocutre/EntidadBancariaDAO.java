@@ -51,7 +51,7 @@ public class EntidadBancariaDAO {
             entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
-            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(resultSet.getString("tipoEntidadBancaria")));
+            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
 
             if (resultSet.next() == true) {
                 throw new RuntimeException("Hay mas de una entidad Bancaria con codigo: " + codigoEntidadBancaria);
@@ -192,6 +192,6 @@ public class EntidadBancariaDAO {
 
         }
         connectionFactory.close(connection);
-        return null;
+        return entidadesBancarias;
     }
 }
