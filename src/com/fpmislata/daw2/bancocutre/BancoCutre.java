@@ -5,6 +5,7 @@
 package com.fpmislata.daw2.bancocutre;
 
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
@@ -21,7 +22,7 @@ public class BancoCutre {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
         // TODO code application logic here
 
         
@@ -64,6 +65,15 @@ public class BancoCutre {
 
         imprimirCuentaBancaria(cuentaBancaria1);
         imprimirMovimientosCuentaBancaria(movimientosBancarios);
+        
+        //Prueba para buscar una entidad Bancaria mediante ID
+        
+        int idEntidadBancariaBuscarda = 1;
+        
+        EntidadBancariaDAO entidadBancariaDAO = new EntidadBancariaDAO();
+        
+        EntidadBancaria entidadBancariaBuscada = new EntidadBancaria();
+        entidadBancariaBuscada=entidadBancariaDAO.read(idEntidadBancariaBuscarda);
 
     }
 
