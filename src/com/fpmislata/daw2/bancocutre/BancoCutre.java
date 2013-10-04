@@ -119,14 +119,30 @@ public class BancoCutre {
         
         for(EntidadBancaria entidadBancaria : entidadesBancarias){
         
-            entidadBancaria.getIdEntidadBancaria();
-            entidadBancaria.getCodigoEntidadBancaria();
-            entidadBancaria.getNombre();
-            entidadBancaria.getTipoEntidadBancaria();
-            entidadBancaria.getCif();
+            System.out.println(entidadBancaria.getIdEntidadBancaria()); 
+            System.out.println(entidadBancaria.getCodigoEntidadBancaria());
+            System.out.println(entidadBancaria.getNombre());
+            System.out.println(entidadBancaria.getTipoEntidadBancaria());
+            System.out.println(entidadBancaria.getCif());
         }
         
-
+        
+        
+        //Prueba buscar Entidad Bancaria pasandole el Codigo
+          
+        List<EntidadBancaria> entidadesBancariasCodigo = new ArrayList<>();
+        
+        entidadesBancariasCodigo = entidadBancariaDAO.findByCodigo("11");
+        
+        for(EntidadBancaria entidadBancaria : entidadesBancariasCodigo){
+        
+            System.out.println(entidadBancaria.getIdEntidadBancaria()); 
+            System.out.println(entidadBancaria.getCodigoEntidadBancaria());
+            System.out.println(entidadBancaria.getNombre());
+            System.out.println(entidadBancaria.getTipoEntidadBancaria());
+            System.out.println(entidadBancaria.getCif());
+        }
+        
     }
 
     //Imprime el numero completo de la cuenta bancaria

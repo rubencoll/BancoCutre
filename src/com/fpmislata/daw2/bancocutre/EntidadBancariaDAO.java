@@ -150,7 +150,7 @@ public class EntidadBancariaDAO {
             entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
-            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(entidadBancaria.getTipoEntidadBancaria().name()));
+            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
 
             entidadesBancarias.add(entidadBancaria);
 
@@ -186,7 +186,7 @@ public class EntidadBancariaDAO {
             entidadBancaria.setCodigoEntidadBancaria(codigoEntidadBancaria);
             entidadBancaria.setNombre(nombre);
             entidadBancaria.setCif(cif);
-            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(entidadBancaria.getTipoEntidadBancaria().name()));
+            entidadBancaria.setTipoEntidadBancaria(TipoEntidadBancaria.valueOf(tipoEntidadBancaria));
 
             entidadesBancarias.add(entidadBancaria);
 

@@ -28,7 +28,7 @@ public class ConnectionFactoryImplJDBC implements ConnectionFactory {
 
         connection = DriverManager.getConnection("jdbc:mysql://localhost/banco", USER, PASS);
 
-        System.out.println("Conexion Realizada");
+        //System.out.println("Conexion Realizada");
         
         return connection;
     }
