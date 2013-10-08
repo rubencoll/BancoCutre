@@ -60,8 +60,6 @@ public class BancoCutre {
         cuentasBancarias.add(cuentaBancaria2);
         cuentasBancarias.add(cuentaBancaria3);
 
-
-
         MovimientoBancario movimientoBancario1 = new MovimientoBancario(9876, TipoMovimientoBancario.DEBE, new BigDecimal("200"), new GregorianCalendar(2013, 4, 22).getTime(), new BigDecimal("5000"), "Pago Contribución", cuentaBancaria1);
         MovimientoBancario movimientoBancario2 = new MovimientoBancario(153, TipoMovimientoBancario.HABER, new BigDecimal("500"), new GregorianCalendar(2013, 7, 5).getTime(), new BigDecimal("2000"), "Ingreso Publicidad", cuentaBancaria1);
 
